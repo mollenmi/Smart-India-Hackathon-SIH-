@@ -1,0 +1,10 @@
+server:
+  port: 8898
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/BC
+
+  main:
+    allow-circular-references: true

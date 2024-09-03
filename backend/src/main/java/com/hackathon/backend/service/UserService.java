@@ -1,19 +1,21 @@
 package com.hackathon.backend.service;
 
-import com.hackathon.backend.model.Admin;
-import com.hackathon.backend.model.Alumni;
-import com.hackathon.backend.model.Student;
-import com.hackathon.backend.model.User;
+import com.hackathon.backend.exception.UserAlreadyExistsException;
+import com.hackathon.backend.model.*;
 import com.hackathon.backend.repository.AdminRepo;
 import com.hackathon.backend.repository.AlumniRepo;
+import com.hackathon.backend.repository.RoleRepo;
 import com.hackathon.backend.repository.StudentRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -22,6 +24,8 @@ public class UserService {
     private final AlumniRepo alumniRepo;
     private final StudentRepo studentRepo;
     private final AdminRepo adminRepo;
+    private final RoleRepo roleRepo;
+    private final PasswordEncoder passwordEncoder;
 
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
@@ -74,13 +78,46 @@ public class UserService {
     }
 
     private User findUserByUsername(String username) {
-        User user = studentRepo.findByUsername(username);
-        if (user != null) return user;
+        Optional<User> user = studentRepo.findByUsername(username);
+        if (user.isPresent()) return user.get();
 
         user = alumniRepo.findByUsername(username);
-        if (user != null) return user;
+        if (user.isPresent()) return user.get();
 
         user = adminRepo.findByUsername(username);
-        return user;
+        return user.orElse(null);
+    }
+
+    public void addAlumni(Alumni alumni) {
+        if(alumniRepo.existsUserByUsername(alumni.getEmail())) {
+            throw new UserAlreadyExistsException(alumni.getUsername() + " already exists");
+        }
+        alumni.setPassword(passwordEncoder.encode(alumni.getPassword()));
+        System.out.println(alumni.getPassword());
+        Role userRole = roleRepo.findByName("ROLE_USER").get();
+        alumni.setRoles(Collections.singletonList(userRole));
+        alumniRepo.save(alumni);
+    }
+
+    public void addStudent(Student student) {
+        if(studentRepo.existsUserByUsername(student.getUsername())) {
+            throw new UserAlreadyExistsException(student.getUsername() + " already exists");
+        }
+        student.setPassword(passwordEncoder.encode(student.getPassword()));
+        System.out.println(student.getPassword());
+        Role userRole = roleRepo.findByName("ROLE_USER").get();
+        student.setRoles(Collections.singletonList(userRole));
+        studentRepo.save(student);
+    }
+
+    public void addAdmin(Admin admin) {
+        if(adminRepo.existsUserByUsername(admin.getUsername())) {
+            throw new UserAlreadyExistsException(admin.getUsername() + " already exists");
+        }
+        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+        System.out.println(admin.getPassword());
+        Role userRole = roleRepo.findByName("ROLE_USER").get();
+        admin.setRoles(Collections.singletonList(userRole));
+        adminRepo.save(admin);
     }
 }

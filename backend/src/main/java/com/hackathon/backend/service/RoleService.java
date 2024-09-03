@@ -2,7 +2,6 @@ package com.hackathon.backend.service;
 
 import com.hackathon.backend.exception.RoleAlreadyExistsException;
 import com.hackathon.backend.exception.UserAlreadyExistsException;
-import com.hackathon.backend.exception.UsernameNotFoundException;
 import com.hackathon.backend.model.Alumni;
 import com.hackathon.backend.model.Role;
 import com.hackathon.backend.model.Student;
@@ -11,6 +10,7 @@ import com.hackathon.backend.repository.AlumniRepo;
 import com.hackathon.backend.repository.RoleRepo;
 import com.hackathon.backend.repository.StudentRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

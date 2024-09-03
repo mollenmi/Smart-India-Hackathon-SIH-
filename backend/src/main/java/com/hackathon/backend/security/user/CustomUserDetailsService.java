@@ -1,5 +1,6 @@
-package com.hackathon.backend.security;
+package com.hackathon.backend.security.user;
 
+import com.hackathon.backend.model.User;
 import com.hackathon.backend.repository.AdminRepo;
 import com.hackathon.backend.repository.AlumniRepo;
 import com.hackathon.backend.repository.StudentRepo;
@@ -19,16 +20,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDetails user = studentRepo.findByUsername(username);
-        if(user == null) {
-            user = alumniRepo.findByUsername(username);
-        }
-        if(user == null) {
-            user = adminRepo.findByUsername(username);
-        }
-        if(user == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
-        return user;
+        User user = studentRepo.findByUsername(username)
+                .orElseGet(() -> alumniRepo.findByUsername(username)
+                        .orElseGet(() -> adminRepo.findByUsername(username)
+                                .orElseThrow(() -> new UsernameNotFoundException("User not found"))));
+
+        return CustomUserDetails.buildUserDetails(user);
     }
 }

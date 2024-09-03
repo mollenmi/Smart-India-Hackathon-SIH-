@@ -34,5 +34,11 @@ public class Alumni implements User, UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
     @DBRef
-    private Set<Role> roles = new HashSet<>();
+    private Collection<Role> roles = new HashSet<>();
+
+    @Override
+    public String getId() {
+        return alumniId;
+    }
+
 }

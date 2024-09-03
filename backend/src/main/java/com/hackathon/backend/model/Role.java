@@ -8,8 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -23,15 +23,17 @@ public class Role {
     private String name;
 
     @DBRef
-    private Set<Student> student = new HashSet<>();
+    private Collection<Student> student = new HashSet<>();
     @DBRef
-    private Set<Alumni> alumni = new HashSet<>();
+    private Collection<Alumni> alumni = new HashSet<>();
     @DBRef
-    private Set<Admin> admin = new HashSet<>();
+    private Collection<Admin> admin = new HashSet<>();
 
     public Role(String name) {
         this.name = name;
     }
+
+
 
     public void assignRoleToStudent(Student theStudent) {
         student.add(theStudent);
