@@ -2,7 +2,9 @@ package com.hackathon.backend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,26 +14,24 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Document
-public class Post {
+public class Comment {
 
     @Id
     private String id;
-    private String content;
-    private String imageId;
+    private String postId;
     private String userId;
-    private List<String> likedBy = new ArrayList<>();
-    private List<Comment> comments = new ArrayList<>();
-    private long createdAt;
+    private String content;
+    @CreatedDate
+    private Long createdAt;
 
-    public Post() {
-        this.createdAt = System.currentTimeMillis();
-    }
+    private String parentCommentId;
+    private List<Comment> replies = new ArrayList<>();
 
-    public Post(String content, String imageId, String userId) {
-        this.content = content;
-        this.imageId = imageId;
+    public Comment(String userId, String content) {
         this.userId = userId;
+        this.content = content;
         this.createdAt = System.currentTimeMillis();
     }
 }

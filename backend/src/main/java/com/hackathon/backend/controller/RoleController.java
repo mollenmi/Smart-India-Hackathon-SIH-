@@ -16,7 +16,7 @@ import static org.springframework.http.HttpStatus.FOUND;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/roles")
+@RequestMapping("/role")
 public class RoleController {
 
     private final RoleService roleService;
@@ -57,22 +57,22 @@ public class RoleController {
         return roleService.removeAllStudentsFromRole(roleId);
     }
 
-    @PostMapping("/remove-alumni-from-role")
+    @PostMapping("/remove-role-from-alumni")
     public Alumni removeAlumniFromRole(@RequestParam("alumniId") String alumniId, @RequestParam("roleId") String roleId) {
         return roleService.removeAlumniFromRole(alumniId, roleId);
     }
 
-    @PostMapping("/remove-student-from-role")
+    @PostMapping("/remove-role-from-student")
     public Student removeStudentFromRole(@RequestParam("studentId") String studentId, @RequestParam("roleId") String roleId) {
         return roleService.removeStudentFromRole(studentId, roleId);
     }
 
-    @PostMapping("/assign-alumni-to-role")
+    @PostMapping("/assign-role-to-alumni")
     public Alumni assignAlumniToRole(@RequestParam("alumniId") String alumniId, @RequestParam("roleId") String roleId) {
         return roleService.assignRoleToAlumni(alumniId, roleId);
     }
 
-    @PostMapping("/assign-student-to-role")
+    @PostMapping("/assign-role-to-student")
     public Student assignStudentToRole(@RequestParam("studentId") String studentId, @RequestParam("roleId") String roleId) {
         return roleService.assignRoleToStudent(studentId, roleId);
     }

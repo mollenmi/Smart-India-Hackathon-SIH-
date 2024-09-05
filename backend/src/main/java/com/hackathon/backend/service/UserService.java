@@ -12,10 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -26,6 +23,7 @@ public class UserService {
     private final AdminRepo adminRepo;
     private final RoleRepo roleRepo;
     private final PasswordEncoder passwordEncoder;
+    private final RoleService roleService;
 
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
@@ -94,8 +92,9 @@ public class UserService {
         }
         alumni.setPassword(passwordEncoder.encode(alumni.getPassword()));
         System.out.println(alumni.getPassword());
-        Role userRole = roleRepo.findByName("ROLE_USER").get();
+        Role userRole = roleRepo.findByName("ROLE_ALUMNI").get();
         alumni.setRoles(Collections.singletonList(userRole));
+//        roleService.assignRoleToAlumni(alumni.getAlumniId(), userRole.getRoleId());
         alumniRepo.save(alumni);
     }
 
@@ -105,8 +104,9 @@ public class UserService {
         }
         student.setPassword(passwordEncoder.encode(student.getPassword()));
         System.out.println(student.getPassword());
-        Role userRole = roleRepo.findByName("ROLE_USER").get();
+        Role userRole = roleRepo.findByName("ROLE_STUDENT").get();
         student.setRoles(Collections.singletonList(userRole));
+
         studentRepo.save(student);
     }
 
@@ -116,7 +116,7 @@ public class UserService {
         }
         admin.setPassword(passwordEncoder.encode(admin.getPassword()));
         System.out.println(admin.getPassword());
-        Role userRole = roleRepo.findByName("ROLE_USER").get();
+        Role userRole = roleRepo.findByName("ROLE_ADMIN").get();
         admin.setRoles(Collections.singletonList(userRole));
         adminRepo.save(admin);
     }

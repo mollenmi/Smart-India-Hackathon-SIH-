@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -29,7 +28,7 @@ public class Alumni implements User, UserDetails {
     private String email;
     private String phone;
     private String description;
-    private final String[] employmentStatus = {"Employed", "Unemployed", "Self-employed", "Freelancing"};
+    private String employmentStatus;
     private byte[] photo;
     private Collection<? extends GrantedAuthority> authorities;
 
