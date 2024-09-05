@@ -1,5 +1,6 @@
 import { Menu, Mic, MoonStar, Search, Sun } from "lucide-react";
-import Logo from "../assets/logo.png";
+import Logo from "../assets/bc_logo_lm.png";
+import Logo1 from "../assets/bc_logo_dm.png";
 import UserImg from "../assets/user.jpg";
 import { useEffect, useState } from "react";
 
