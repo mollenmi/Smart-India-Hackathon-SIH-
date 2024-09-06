@@ -22,6 +22,7 @@ public class Post {
     private List<String> likedBy = new ArrayList<>();
     private List<Comment> comments = new ArrayList<>();
     private long createdAt;
+    private byte[] image;
 
     public Post() {
         this.createdAt = System.currentTimeMillis();
