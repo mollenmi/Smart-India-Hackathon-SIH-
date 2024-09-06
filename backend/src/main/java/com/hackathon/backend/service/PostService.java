@@ -6,28 +6,26 @@ import com.hackathon.backend.repository.PostRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class PostService {
 
-    public final PostRepo postRepo;
-    public final GridFSService gridFSService;
+    private final PostRepo postRepo;
 
-    public Page<Post> getFeed(int page, int size) {
-        PageRequest pageRequest = PageRequest.of(page, size);
-        return (Page<Post>) postRepo.findAllByOrderByCreatedAtDesc(pageRequest);
+    public Page<Post> getFeed(Pageable pageable) {
+        return postRepo.findAll(pageable);
     }
 
-    public Post createPost(String content, String imageId, String userId) {
-        Post post = new Post(content, imageId, userId);
+    public Post createPost(String content, String userId) {
+        Post post = new Post(content, userId); // Remove imageId handling
         return postRepo.save(post);
     }
 
@@ -37,10 +35,8 @@ public class PostService {
 
     public String getLoggedInUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
         if (authentication != null && authentication.isAuthenticated()) {
             Object principal = authentication.getPrincipal();
-
             if (principal instanceof UserDetails) {
                 return ((UserDetails) principal).getUsername();
             } else {
@@ -73,18 +69,11 @@ public class PostService {
         return null;
     }
 
-    public byte[] getPostImage(String imageId) throws IOException {
-        return gridFSService.getFile(imageId);
-    }
-
-    public boolean deletePost(String postId) throws IOException {
+    public boolean deletePost(String postId) {
         Optional<Post> postOptional = postRepo.findById(postId);
         if (postOptional.isPresent()) {
             Post post = postOptional.get();
             postRepo.delete(post);
-            if (post.getImageId() != null) {
-                gridFSService.deleteFile(post.getImageId());
-            }
             return true;
         }
         return false;

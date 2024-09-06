@@ -111,7 +111,7 @@ public class AuthController {
                 .stream()
                 .map(GrantedAuthority::getAuthority)
                 .toList();
-
+        System.out.println("Successfully logged in: " + userDetails.getUsername());
         return ResponseEntity.ok(new UserResponse(userDetails.getUserId(), userDetails.getUsername(), roles));
     }
 }

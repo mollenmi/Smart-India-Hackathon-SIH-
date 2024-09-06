@@ -1,15 +1,13 @@
 package com.hackathon.backend.controller;
 
 import com.hackathon.backend.model.Post;
-import com.hackathon.backend.repository.PostRepo;
 import com.hackathon.backend.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,19 +17,21 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping("/feed")
-    public Page<Post> getFeed(@RequestParam("page") int page, @RequestParam("size") int size) {
-        return postService.getFeed(page, size);
+    public ResponseEntity<Page<Post>> getFeed(Pageable pageable) {
+        Page<Post> posts = postService.getFeed(pageable);
+        return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Post> createPost(@RequestParam String content, @RequestParam String imageId) {
+    public ResponseEntity<Post> createPost(@RequestParam String content) {
         String userId = postService.getLoggedInUserId();
-        Post post = postService.createPost(content, imageId, userId);
+        Post post = postService.createPost(content, userId);
         return new ResponseEntity<>(post, HttpStatus.CREATED);
     }
 
     @PostMapping("/like/{postId}")
-    public ResponseEntity<Post> likePost(@PathVariable String postId, @RequestParam String userId) {
+    public ResponseEntity<Post> likePost(@PathVariable String postId) {
+        String userId = postService.getLoggedInUserId();
         Post likedPost = postService.likePost(postId, userId);
         if (likedPost != null) {
             return ResponseEntity.ok(likedPost);
@@ -40,7 +40,8 @@ public class PostController {
     }
 
     @PostMapping("/comment/{postId}")
-    public ResponseEntity<Post> addComment(@PathVariable String postId, @RequestParam String userId, @RequestParam String text) {
+    public ResponseEntity<Post> addComment(@PathVariable String postId, @RequestParam String text) {
+        String userId = postService.getLoggedInUserId();
         Post commentedPost = postService.addComment(postId, userId, text);
         if (commentedPost != null) {
             return ResponseEntity.ok(commentedPost);
@@ -53,7 +54,7 @@ public class PostController {
         return ResponseEntity.ok(postService.getNumberOfLikes(postId));
     }
 
-    @GetMapping("/comments{postId}")
+    @GetMapping("/comments/{postId}")
     public ResponseEntity<Long> getNumberOfComments(@PathVariable String postId) {
         return ResponseEntity.ok(postService.getNumberOfComments(postId));
     }
@@ -67,18 +68,8 @@ public class PostController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/image/{postId}")
-    public ResponseEntity<byte[]> getPostImage(@PathVariable String postId) throws IOException {
-        Post post = postService.getPostById(postId);
-        if (post != null && post.getImageId() != null) {
-            byte[] imageData = postService.getPostImage(post.getImageId());
-            return ResponseEntity.ok(imageData);
-        }
-        return ResponseEntity.notFound().build();
-    }
-
     @DeleteMapping("/post/{postId}")
-    public ResponseEntity<Void> deletePost(@PathVariable String postId) throws IOException {
+    public ResponseEntity<Void> deletePost(@PathVariable String postId) {
         boolean isDeleted = postService.deletePost(postId);
         if (isDeleted) {
             return ResponseEntity.noContent().build();

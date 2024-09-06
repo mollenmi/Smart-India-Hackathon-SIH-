@@ -18,7 +18,6 @@ public class Post {
     @Id
     private String id;
     private String content;
-    private String imageId;
     private String userId;
     private List<String> likedBy = new ArrayList<>();
     private List<Comment> comments = new ArrayList<>();
@@ -28,9 +27,8 @@ public class Post {
         this.createdAt = System.currentTimeMillis();
     }
 
-    public Post(String content, String imageId, String userId) {
+    public Post(String content, String userId) {
         this.content = content;
-        this.imageId = imageId;
         this.userId = userId;
         this.createdAt = System.currentTimeMillis();
     }
