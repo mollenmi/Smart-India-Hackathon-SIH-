@@ -11,13 +11,8 @@ export const sidebarLinks = [
         url: "#",
       },
       {
-        icon: "Video",
-        title: "Classroom",
-        url: "#",
-      },
-      {
         icon: "TvMinimal",
-        title: "Subscriptions",
+        title: "Academia",
         url: "#",
       },
     ],
@@ -27,28 +22,9 @@ export const sidebarLinks = [
     links: [
       {
         icon: "UserRound",
-        title: "Mentorship",
+        title: "Alumni Connect",
         url: "#",
       },
-      {
-        icon: "History",
-        title: "History",
-        url: "#",
-      },
-      
-    ],
-  },
-  {
-    categoryTitle: "Explore",
-    links: [
-      {
-        icon: "Flame",
-        title: "Alumini",
-        url: "#",
-      },
-      
-     
-     
     ],
   },
   {
@@ -56,17 +32,17 @@ export const sidebarLinks = [
     links: [
       {
         icon: "TvMinimalPlay",
-        title: "YouTube Pro",
+        title: "Community",
         url: "#",
       },
       {
         icon: "ListMusic",
-        title: "Content",
+        title: "Placement Support",
         url: "#",
       },
       {
         icon: "Tv",
-        title: "Live",
+        title: "Events",
         url: "#",
       },
     ],

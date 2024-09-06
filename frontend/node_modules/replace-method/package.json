@@ -1,0 +1,39 @@
+{
+  "name": "replace-method",
+  "description": "JavaScript post-processing step to replace specific function/method calls with other bits of JavaScript",
+  "version": "0.0.0",
+  "main": "index.js",
+  "browser": "index.js",
+  "dependencies": {
+    "recast": "~0.5.7"
+  },
+  "devDependencies": {
+    "faucet": "0.0.0"
+  },
+  "scripts": {
+    "test": "faucet test.js"
+  },
+  "author": "Hugh Kennedy <hughskennedy@gmail.com> (http://hughsk.io/)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hughsk/replace-method"
+  },
+  "bugs": {
+    "url": "https://github.com/hughsk/replace-method/issues"
+  },
+  "homepage": "https://github.com/hughsk/replace-method",
+  "keywords": [
+    "replace",
+    "method",
+    "call",
+    "post-processing",
+    "language",
+    "macro",
+    "transform",
+    "meta",
+    "inline",
+    "inlining",
+    "brfs"
+  ]
+}

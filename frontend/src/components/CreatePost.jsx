@@ -1,75 +1,46 @@
+// src/components/CreatePost.jsx
 import React, { useState } from 'react';
-//import Avatar from "react-avatar";//
-//import { CiImageOn } from "react-icons/ci";//
-//import axios from "axios";
-// import { TWEET_API_END_POINT } from "../utils/constant"; //
-//import toast from "react-hot-toast"//
-//import { useSelector, useDispatch } from "react-redux";//
-//import { getAllTweets, getIsActive, getRefresh } from '../redux/tweetSlice';//
+import axios from 'axios';
 
 const CreatePost = () => {
-    const [description, setDescription] = useState("");
-    const { user } = useSelector(store => store.user);
-    const {isActive} = useSelector(store=>store.tweet);
-    const dispatch = useDispatch();
+  const [content, setContent] = useState('');
 
-    const submitHandler = async () => {
-
-        try {
-            const res = await axios.post(`${TWEET_API_END_POINT}/create`, { description, id: user?._id }, {
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                withCredentials: true
-            });
-            dispatch(getRefresh());
-            if (res.data.success) {
-                toast.success(res.data.message);
-            }
-        } catch (error) {
-            toast.error(error.response.data.message);
-            console.log(error);
-        }
-        setDescription("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:8898/posts/create', new URLSearchParams({ content }), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
+      setContent('');
+      alert('Post created successfully!');
+    } catch (error) {
+      console.error('Error creating post:', error);
+      alert('Failed to create post');
     }
+  };
 
-    const forYouHandler = () => {
-         dispatch(getIsActive(true));
-    }
-    const followingHandler = () => {
-        
-        dispatch(getIsActive(false));
-    }
-
-    return (
-        <div className='w-[100%]'>
-            <div>
-                <div className='flex items-center justify-evenly border-b border-gray-200'>
-                    <div onClick={forYouHandler} className={`${isActive ? "border-b-4 border-blue-600" : "border-b-4 border-transparent"} cursor-pointer hover:bg-gray-200 w-full text-center px-4 py-3`}>
-                        <h1 className='font-semibold text-gray-600 text-lg'>For you</h1>
-                    </div>
-                    <div onClick={followingHandler} className={`${!isActive ? "border-b-4 border-blue-600" : "border-b-4 border-transparent"} cursor-pointer hover:bg-gray-200 w-full text-center px-4 py-3`}>
-                        <h1 className='font-semibold text-gray-600 text-lg'>Following</h1>
-                    </div>
-                </div>
-                <div >
-                    <div className='flex items-center p-4'>
-                        <div>
-                            <Avatar src="https://pbs.twimg.com/profile_images/1703261403237502976/W0SFbJVS_400x400.jpg" size="40" round={true} />
-                        </div>
-                        <input value={description} onChange={(e) => setDescription(e.target.value)} className='w-full outline-none border-none text-xl ml-2' type="text" placeholder='What is happening?!' />
-                    </div>
-                    <div className='flex items-center justify-between p-4 border-b border-gray-300'>
-                        <div>
-                            <CiImageOn size="24px" />
-                        </div>
-                        <button onClick={submitHandler} className='bg-[#1D9BF0] px-4 py-1 text-lg text-white text-right border-none rounded-full '>Post</button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    )
-}
+  return (
+    <div className="bg-gray-100 dark:bg-neutral-800 p-4 rounded-lg shadow-lg max-w-md mx-auto">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <textarea
+          className="w-full p-4 border border-gray-300 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 dark:bg-neutral-700 dark:text-white resize-none placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-300 shadow-sm"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          placeholder="What's on your mind?"
+          rows="4"  // Reduced height of textarea
+          required
+        />
+        <button
+          type="submit"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg transition-all duration-300 shadow-md transform hover:scale-105"
+        >
+          Post
+        </button>
+      </form>
+    </div>
+  );   
+};
 
 export default CreatePost;

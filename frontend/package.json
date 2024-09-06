@@ -1,5 +1,5 @@
 {
-  "name": "youtube-homepage-reactjs",
+  "name": "reactjs",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,12 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.6.0",
+    "@heroicons/react": "^1.0.6",
+    "@stomp/stompjs": "^7.0.0",
+    "avatar": "^0.1.0",
+    "axios": "^1.7.7",
     "lucide-react": "^0.400.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-avatar": "^5.0.3",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.1",
+    "sockjs-client": "^1.6.1"
   },
   "devDependencies": {
-    "@types/react": "^18.3.3",
+    "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.19",
@@ -24,7 +32,8 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "postcss": "^8.4.39",
-    "tailwindcss": "^3.4.4",
+    "tailwindcss": "^3.4.10",
+    "typescript": "^5.5.4",
     "vite": "^5.3.1"
   }
 }

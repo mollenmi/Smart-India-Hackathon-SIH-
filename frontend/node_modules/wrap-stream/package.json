@@ -1,0 +1,33 @@
+{
+  "name": "wrap-stream",
+  "description": "Wrap the output of a stream with a prefix and/or suffix",
+  "version": "0.0.0",
+  "main": "index.js",
+  "browser": "index.js",
+  "dependencies": {
+    "through": "~2.3.4"
+  },
+  "devDependencies": {
+    "tape": "~1.1.1",
+    "concat-stream": "~1.0.1"
+  },
+  "scripts": {
+    "test": "node test"
+  },
+  "author": "Hugh Kennedy <hughskennedy@gmail.com> (http://github.com/hughsk)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hughsk/wrap-stream"
+  },
+  "bugs": {
+    "url": "https://github.com/hughsk/wrap-stream/issues"
+  },
+  "keywords": [
+    "wrap",
+    "prefix",
+    "suffix",
+    "stream",
+    "output"
+  ]
+}
