@@ -92,10 +92,10 @@ public class UserService {
         }
         alumni.setPassword(passwordEncoder.encode(alumni.getPassword()));
         System.out.println(alumni.getPassword());
-        Role userRole = roleRepo.findByName("ROLE_ALUMNI").get();
+        Role userRole = roleRepo.findRoleByName("ROLE_ALUMNI").orElseThrow(() -> new UsernameNotFoundException("Role not found"));
         alumni.setRoles(Collections.singletonList(userRole));
-//        roleService.assignRoleToAlumni(alumni.getAlumniId(), userRole.getRoleId());
         alumniRepo.save(alumni);
+        roleService.assignRoleToAlumni(alumni.getAlumniId(), userRole.getRoleId());
     }
 
     public void addStudent(Student student) {
@@ -104,10 +104,10 @@ public class UserService {
         }
         student.setPassword(passwordEncoder.encode(student.getPassword()));
         System.out.println(student.getPassword());
-        Role userRole = roleRepo.findByName("ROLE_STUDENT").get();
+        Role userRole = roleRepo.findRoleByName("ROLE_STUDENT").orElseThrow(() -> new UsernameNotFoundException("Role not found"));
         student.setRoles(Collections.singletonList(userRole));
-
         studentRepo.save(student);
+        roleService.assignRoleToStudent(student.getStudentId(), userRole.getRoleId());
     }
 
     public void addAdmin(Admin admin) {
@@ -116,8 +116,9 @@ public class UserService {
         }
         admin.setPassword(passwordEncoder.encode(admin.getPassword()));
         System.out.println(admin.getPassword());
-        Role userRole = roleRepo.findByName("ROLE_ADMIN").get();
+        Role userRole = roleRepo.findRoleByName("ROLE_ADMIN").orElseThrow(() -> new UsernameNotFoundException("Role not found"));
         admin.setRoles(Collections.singletonList(userRole));
         adminRepo.save(admin);
+        roleService.assignRoleToAlumni(admin.getAdminId(), userRole.getRoleId());
     }
 }

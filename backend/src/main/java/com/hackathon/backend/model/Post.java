@@ -16,7 +16,7 @@ import java.util.List;
 public class Post {
 
     @Id
-    private String id;
+    private String postId;
     private String content;
     private String userId;
     private List<String> likedBy = new ArrayList<>();

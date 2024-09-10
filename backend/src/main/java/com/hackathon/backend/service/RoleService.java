@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.management.relation.RoleNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +24,6 @@ public class RoleService {
     private final RoleRepo roleRepo;
     private final StudentRepo studentRepo;
     private final AlumniRepo alumniRepo;
-    private final AdminRepo adminRepo;
 
     public List<Role> getRoles() {
         return roleRepo.findAll();
@@ -43,8 +43,8 @@ public class RoleService {
         roleRepo.deleteById(roleId);
     }
 
-    public Role findByName(String name) {
-        return roleRepo.findByName(name).get();
+    public Role findByName(String name) throws RoleNotFoundException {
+        return roleRepo.findRoleByName(name).orElseThrow(() -> new RoleNotFoundException("Role not found"));
     }
 
     public Alumni removeAlumniFromRole(String alumniId, String roleId) {
@@ -85,8 +85,8 @@ public class RoleService {
         return alumni.get();
     }
 
-    public Student assignRoleToStudent(String alumniId, String roleId) {
-        Optional<Student> student = studentRepo.findById(alumniId);
+    public Student assignRoleToStudent(String studentId, String roleId) {
+        Optional<Student> student = studentRepo.findById(studentId);
         Optional<Role> role = roleRepo.findById(roleId);
 
         if(student.isPresent() && role.get().getStudent().contains(student.get())) {
