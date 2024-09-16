@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -32,7 +31,8 @@ public class Student implements User, UserDetails {
     private Integer year;
     private byte[] photo;
     private Collection<? extends GrantedAuthority> authorities;
-
+    @DBRef
+    private String communityId;
     @DBRef
     private Collection<Role> roles = new HashSet<>();
 

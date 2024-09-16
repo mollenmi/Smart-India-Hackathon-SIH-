@@ -33,8 +33,6 @@ public class Role {
         this.name = name;
     }
 
-
-
     public void assignRoleToStudent(Student theStudent) {
         student.add(theStudent);
         theStudent.getRoles().add(this);
@@ -53,6 +51,16 @@ public class Role {
     public void removeAlumniFromRole(Alumni alumni) {
         this.alumni.remove(alumni);
         alumni.getRoles().remove(this);
+    }
+
+    public void assignRoleToAdmin(Admin admin) {
+        this.admin.add(admin);
+        admin.getRoles().add(this);
+    }
+
+    public void removeAdminFromRole(Admin admin) {
+        this.admin.remove(admin);
+        admin.getRoles().remove(this);
     }
 
     public void removeAllStudentsFromRole() {

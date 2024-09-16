@@ -33,6 +33,9 @@ public class Alumni implements User, UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
     @DBRef
+    private String communityId;
+
+    @DBRef
     private Collection<Role> roles = new HashSet<>();
 
     @Override
