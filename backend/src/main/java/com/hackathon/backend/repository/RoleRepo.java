@@ -1,6 +1,6 @@
 package com.hackathon.backend.repository;
 
-import com.hackathon.backend.model.Role;
+import com.hackathon.backend.model.user.Role;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 

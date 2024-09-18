@@ -1,5 +1,6 @@
-package com.hackathon.backend.model;
+package com.hackathon.backend.model.post;
 
+import com.hackathon.backend.model.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

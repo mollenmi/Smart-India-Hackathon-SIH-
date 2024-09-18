@@ -1,8 +1,7 @@
 package com.hackathon.backend.security.user;
 
-import com.hackathon.backend.model.User;
+import com.hackathon.backend.model.user.User;
 import lombok.*;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,7 +20,6 @@ public class CustomUserDetails implements UserDetails {
     private String username;
     private String password;
     private Collection<GrantedAuthority> authorities;
-
 
     public static CustomUserDetails buildUserDetails(User user) {
         List<GrantedAuthority> authorities = user.getRoles()

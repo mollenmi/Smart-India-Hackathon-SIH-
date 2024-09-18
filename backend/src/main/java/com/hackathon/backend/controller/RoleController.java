@@ -1,9 +1,9 @@
 package com.hackathon.backend.controller;
 
 import com.hackathon.backend.exception.RoleAlreadyExistsException;
-import com.hackathon.backend.model.Alumni;
-import com.hackathon.backend.model.Role;
-import com.hackathon.backend.model.Student;
+import com.hackathon.backend.model.user.Alumni;
+import com.hackathon.backend.model.user.Role;
+import com.hackathon.backend.model.user.Student;
 import com.hackathon.backend.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

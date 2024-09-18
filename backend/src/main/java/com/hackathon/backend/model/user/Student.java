@@ -1,4 +1,4 @@
-package com.hackathon.backend.model;
+package com.hackathon.backend.model.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

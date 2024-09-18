@@ -1,25 +1,18 @@
 import React from 'react';
 import Dashboard from './Components/Dashboard/Dashboard'
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider, Navigate } from 'react-router-dom';
 
-
-function App() {
-  return(
+const router = createBrowserRouter(
+  createRoutesFromElements(
     <>
-    <Dashboard/>
-
+      <Route path='/home' element={<Dashboard />} />
+      <Route path="*" element={<Navigate to="/home" />} />
     </>
   )
+)
+
+const App = () => {
+  return <RouterProvider router={router} />
 }
 
 export default App;
-
-
-{ /*
-  <BrowseRouter>
-    <Routes>
-      <Route path="/" element={<Dashboard />} />
-      <Route path="/video_stream" element={<Event/>} />
-    </Routes>
-    </BrowseRouter>
-  </>
-*/}

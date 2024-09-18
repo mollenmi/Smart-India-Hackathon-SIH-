@@ -1,6 +1,6 @@
 package com.hackathon.backend.security.user;
 
-import com.hackathon.backend.model.User;
+import com.hackathon.backend.model.user.User;
 import com.hackathon.backend.repository.AdminRepo;
 import com.hackathon.backend.repository.AlumniRepo;
 import com.hackathon.backend.repository.StudentRepo;

@@ -16,9 +16,6 @@ export default function App() {
   const [chatbotInput, setChatbotInput] = useState('');
   const [chatbotMessages, setChatbotMessages] = useState([]);
 
-
-
-  // Updated placeholder data with dynamic image URL
   const [feeds, setFeeds] = useState([
     { 
       id: 1, 

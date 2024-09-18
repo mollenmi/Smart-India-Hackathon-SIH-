@@ -2,9 +2,10 @@ package com.hackathon.backend.service;
 
 import com.hackathon.backend.exception.RoleAlreadyExistsException;
 import com.hackathon.backend.exception.UserAlreadyExistsException;
-import com.hackathon.backend.model.Alumni;
-import com.hackathon.backend.model.Role;
-import com.hackathon.backend.model.Student;
+import com.hackathon.backend.model.user.Admin;
+import com.hackathon.backend.model.user.Alumni;
+import com.hackathon.backend.model.user.Role;
+import com.hackathon.backend.model.user.Student;
 import com.hackathon.backend.repository.AdminRepo;
 import com.hackathon.backend.repository.AlumniRepo;
 import com.hackathon.backend.repository.RoleRepo;
@@ -45,6 +46,18 @@ public class RoleService {
 
     public Role findByName(String name) {
         return roleRepo.findByName(name).get();
+    }
+
+    public Admin removeAdminFromRole(String adminId, String roleId) {
+        Optional<Admin> admin = adminRepo.findById(adminId);
+        Optional<Role> role = roleRepo.findById(roleId);
+
+        if(role.isPresent() && role.get().getAdmin().contains(admin.get())) {
+            role.get().removeAdminFromRole(admin.get());
+            roleRepo.save(role.get());
+            return admin.get();
+        }
+        throw new UsernameNotFoundException("Alumni not found");
     }
 
     public Alumni removeAlumniFromRole(String alumniId, String roleId) {
@@ -97,6 +110,20 @@ public class RoleService {
             roleRepo.save(role.get());
         }
         return student.get();
+    }
+
+    public Admin assignRoleToAdmin(String adminId, String roleId) {
+        Optional<Admin> admin = adminRepo.findById(adminId);
+        Optional<Role> role = roleRepo.findById(roleId);
+
+        if(admin.isPresent() && role.get().getStudent().contains(admin.get())) {
+            throw new UserAlreadyExistsException(admin.get().getName() + " is already assigned to role " + role.get().getName()+ " role");
+        }
+        if(role.isPresent()) {
+            role.get().assignRoleToAdmin(admin.get());
+            roleRepo.save(role.get());
+        }
+        return admin.get();
     }
 
     public Role removeAllUsersFromRole(String roleId) {
