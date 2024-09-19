@@ -3,6 +3,7 @@ package com.hackathon.backend.service;
 import com.hackathon.backend.exception.ResourceNotFoundException;
 import com.hackathon.backend.model.Comment;
 import com.hackathon.backend.model.post.Post;
+import com.hackathon.backend.model.user.User;
 import com.hackathon.backend.repository.PostRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,22 +26,27 @@ public class PostService {
     private final PostRepo postRepo;
     private final UserService userService;
 
-    public Page<Post> getFeed(Pageable pageable) {
-        return postRepo.findAll(pageable);
+    public List<Post> getFeed(Pageable pageable) {
+        return postRepo.findAllByOrderByCreatedAtDesc(pageable);
     }
 
     public Post createPost(String content, MultipartFile image) throws IOException, SQLException {
 
         String userId = getLoggedInUserId();
-//        String communityId = userService.deriveCommunityIdForUser(userId);
+
+        User user = userService.findUserById(userId);
+        if (user == null) {
+            throw new IllegalArgumentException("User not found with ID: " + userId);
+        }
 
         Post post = new Post();
         post.setContent(content);
-        if (image != null && !image.isEmpty()) {
-            post.setImage(image.getBytes());  // Store the image bytes directly
-        }
-//        post.setCommunityId(communityId);
         post.setUserId(userId);
+        post.setUsername(user.getUsername());
+        if (image != null && !image.isEmpty()) {
+            post.setImage(image.getBytes());
+        }
+
         post.setCreatedAt(System.currentTimeMillis());
 
         return postRepo.save(post);

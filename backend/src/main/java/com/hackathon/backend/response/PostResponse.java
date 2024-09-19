@@ -9,4 +9,6 @@ import lombok.NoArgsConstructor;
 public class PostResponse {
     private Post post;
     private String photo;
+    private String authorUsername;
+    private String authorPhoto;
 }

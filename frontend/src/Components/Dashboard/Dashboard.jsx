@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaHome, FaGraduationCap, FaUserFriends, FaCalendarAlt, FaBriefcase, FaUsers, FaMoon, FaSun, FaSearch, FaEdit, FaHeart, FaComment, FaBars, FaChevronDown, FaChevronUp , FaRobot, FaTimes} from 'react-icons/fa';
 import { IoMdChatbubbles } from 'react-icons/io';
 import './Dashboard.css';
+import api from '../Api/api';
+import profile_picture from '../../assets/profile_picture.jpg'
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -15,31 +17,26 @@ export default function App() {
   const [showChatbot, setShowChatbot] = useState(false);
   const [chatbotInput, setChatbotInput] = useState('');
   const [chatbotMessages, setChatbotMessages] = useState([]);
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [feeds, setFeeds] = useState([]);
+  const [error, setError] = useState(null);
 
-  const [feeds, setFeeds] = useState([
-    { 
-      id: 1, 
-      author: 'John Doe', 
-      content: 'Just finished my final project!', 
-      image: 'src/assets/ff.png', 
-      likes: 15, 
-      comments: [
-        { id: 1, author: 'Jane Smith', content: 'Great job!' },
-        { id: 2, author: 'Bob Johnson', content: 'Congrats!' }
-      ]
-    },
-    { 
-      id: 2, 
-      author: 'Jane Smith', 
-      content: 'Looking forward to the upcoming career fair.', 
-      image: 'src/assets/ff.png', 
-      likes: 20, 
-      comments: [
-        { id: 3, author: 'Alice Brown', content: 'Me too!' },
-        { id: 4, author: 'Charlie Davis', content: 'See you there!' }
-      ]
-    },
-  ]);
+  // Fetch feeds on component mount
+  useEffect(() => {
+    const fetchFeeds = async () => {
+      try {
+        const response = await api.get('/feed');
+        console.log(response.data); // Log data to verify structure
+        setFeeds(response.data);
+      } catch (error) {
+        console.error('Error fetching feeds:', error);
+      }
+    };
+
+    fetchFeeds();
+  }, []);
+  
 
   const communities = [
     { id: 1, name: 'Computer Science Club' },
@@ -212,14 +209,25 @@ export default function App() {
                 {feeds.map((feed) => (
                   <div key={feed.id} className="feed-item">
                     <div className="feed-header">
-                      <img src={feed.image} alt={feed.author} className="author-image" />
+                        <img
+                        src={feed.profilePicture
+                          ? `data:image/jpeg;base64,${feed.authorProfilePicture}`
+                          : profile_picture
+                        }
+                        className="author-image"
+                        />
                       <div className="author-info">
                         <h3>{feed.author}</h3>
-                        <p>2 hours ago</p>
                       </div>
                     </div>
-                    <p className="feed-content">{feed.content}</p>
-                    <img src={feed.image} alt="Post image" className="feed-image" />
+                    <p className="feed-content">{feed.post.content}</p>
+                    {feed.photo && (
+                      <img
+                        src={`data:image/jpeg;base64,${feed.photo}`}
+                        alt="Post"
+                        className="feed-image"
+                      />
+                    )}
                     <div className="feed-actions">
                       <button 
                         onClick={() => toggleLike(feed.id)} 
@@ -233,7 +241,7 @@ export default function App() {
                         className={`action-button ${activeComments[feed.id] ? 'active' : ''}`}
                       >
                         <FaComment className="action-icon" />
-                        {feed.comments.length}
+                        {/* {feed.comments.length} */}
                       </button>
                     </div>
                     {activeComments[feed.id] && (

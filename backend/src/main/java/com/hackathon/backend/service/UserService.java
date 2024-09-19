@@ -1,13 +1,14 @@
 package com.hackathon.backend.service;
 
+import com.hackathon.backend.exception.ResourceNotFoundException;
 import com.hackathon.backend.exception.UserAlreadyExistsException;
+import com.hackathon.backend.model.post.Post;
 import com.hackathon.backend.model.user.*;
 import com.hackathon.backend.repository.AdminRepo;
 import com.hackathon.backend.repository.AlumniRepo;
 import com.hackathon.backend.repository.RoleRepo;
 import com.hackathon.backend.repository.StudentRepo;
 import com.hackathon.backend.request.UpdateUserRequest;
-import com.hackathon.backend.response.AuthResponse;
 import com.hackathon.backend.security.TokenProvider;
 import com.hackathon.backend.security.user.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
@@ -55,6 +56,26 @@ public class UserService {
         }
 
         throw new RuntimeException("com.hackathon.backend.model.User not found");
+    }
+
+    public byte[] getProfilePictureById(String postId) {
+        Optional<Student> student = studentRepo.findById(postId);
+        if (student.isEmpty()) {
+            byte[] photoBytes = student.get().getPhoto();
+            if (photoBytes != null) {
+                return photoBytes;
+            }
+        }
+
+        Optional<Alumni> alumni = alumniRepo.findById(postId);
+        if (alumni.isEmpty()) {
+            byte[] photoBytes = alumni.get().getPhoto();
+            if (photoBytes != null) {
+                return photoBytes;
+            }
+        }
+
+        return null;
     }
 
     public String getCurrentUserId() {

@@ -1,10 +1,14 @@
 package com.hackathon.backend.controller;
 
 import com.hackathon.backend.model.post.Post;
+import com.hackathon.backend.model.user.Admin;
+import com.hackathon.backend.model.user.Alumni;
+import com.hackathon.backend.model.user.Student;
+import com.hackathon.backend.model.user.User;
 import com.hackathon.backend.response.PostResponse;
 import com.hackathon.backend.service.PostService;
+import com.hackathon.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +25,41 @@ import java.util.stream.Collectors;
 public class PostController {
 
     private final PostService postService;
+    private final UserService userService;
 
     @GetMapping("/feed")
     public ResponseEntity<List<PostResponse>> getFeed(Pageable pageable) {
-        Page<Post> posts = postService.getFeed(pageable);
+        List<Post> posts = postService.getFeed(pageable);
         List<PostResponse> postResponses = posts.stream()
                 .map(post -> {
                     PostResponse response = new PostResponse();
                     response.setPost(post);
+
+                    Object author = null;
+                    if (post.getStudent() != null) {
+                        author = post.getStudent();
+                    } else if (post.getAlumni() != null) {
+                        author = post.getAlumni();
+                    } else if (post.getAdmin() != null) {
+                        author = post.getAdmin();
+                    }
+
+                    if (author != null) {
+                        if (author instanceof Student) {
+                            response.setAuthorUsername(((Student) author).getUsername());
+                        } else if (author instanceof Alumni) {
+                            response.setAuthorUsername(((Alumni) author).getUsername());
+                        } else if (author instanceof Admin) {
+                            response.setAuthorUsername(((Admin) author).getUsername());
+                        }
+
+                        byte[] profilePictureBytes = userService.getProfilePictureById(getAuthorId(author));  // Implement getAuthorId to fetch the author ID
+                        if (profilePictureBytes != null && profilePictureBytes.length > 0) {
+                            String base64ProfilePicture = Base64.getEncoder().encodeToString(profilePictureBytes);
+                            response.setAuthorPhoto(base64ProfilePicture);
+                        }
+                    }
+
                     byte[] photoBytes = postService.getPostPhotoById(post.getPostId());
                     if (photoBytes != null && photoBytes.length > 0) {
                         String base64Photo = Base64.getEncoder().encodeToString(photoBytes);
@@ -99,5 +130,16 @@ public class PostController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    private String getAuthorId(Object author) {
+        if (author instanceof Student) {
+            return ((Student) author).getId();
+        } else if (author instanceof Alumni) {
+            return ((Alumni) author).getId();
+        } else if (author instanceof Admin) {
+            return ((Admin) author).getId();
+        }
+        return null;
     }
 }

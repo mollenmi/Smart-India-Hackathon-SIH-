@@ -365,6 +365,8 @@
 .feed-image {
   width: 100%;
   height: auto;
+  max-height: 350px;
+  object-fit: contain;
 }
 
 .feed-actions {
