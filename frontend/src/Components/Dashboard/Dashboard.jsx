@@ -142,9 +142,6 @@ export default function App() {
       </aside>
 
       <div className="main-content">
-
-
-
         {/* Navbar */}
         <header className="navbar">
           <div className="navbar-brand">
@@ -329,9 +326,6 @@ export default function App() {
               </form>
             </div>
           )}
- 
-
-
         </main>
       </div>
     </div>

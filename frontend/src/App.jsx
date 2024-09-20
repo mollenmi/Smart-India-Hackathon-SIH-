@@ -1,5 +1,6 @@
 import React from 'react';
 import Dashboard from './Components/Dashboard/Dashboard'
+import VideoStream from './Components/Video_Stream/VideoStream'
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider, Navigate } from 'react-router-dom';
 
 const router = createBrowserRouter(

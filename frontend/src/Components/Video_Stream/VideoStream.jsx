@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaMicrophone, FaMicrophoneSlash, FaVideo, FaVideoSlash, FaPhoneSlash } from 'react-icons/fa'
 import { IoMdSend } from 'react-icons/io'
-import './Video_stream.css'
+import './VideoStream.css'
 
 export default function LiveStudentInteraction() {
   const [messages, setMessages] = useState([])

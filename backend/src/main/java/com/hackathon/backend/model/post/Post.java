@@ -1,6 +1,5 @@
 package com.hackathon.backend.model.post;
 
-import com.hackathon.backend.model.Comment;
 import com.hackathon.backend.model.user.Admin;
 import com.hackathon.backend.model.user.Alumni;
 import com.hackathon.backend.model.user.Student;

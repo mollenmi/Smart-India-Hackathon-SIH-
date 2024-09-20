@@ -1,6 +1,6 @@
 package com.hackathon.backend.controller;
 
-import com.hackathon.backend.model.Comment;
+import com.hackathon.backend.model.post.Comment;
 import com.hackathon.backend.service.CommentService;
 import org.springframework.web.bind.annotation.*;
 

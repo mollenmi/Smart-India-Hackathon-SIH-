@@ -1,12 +1,11 @@
 package com.hackathon.backend.service;
 
 import com.hackathon.backend.exception.ResourceNotFoundException;
-import com.hackathon.backend.model.Comment;
+import com.hackathon.backend.model.post.Comment;
 import com.hackathon.backend.model.post.Post;
 import com.hackathon.backend.model.user.User;
 import com.hackathon.backend.repository.PostRepo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -1,6 +1,6 @@
 package com.hackathon.backend.service;
 
-import com.hackathon.backend.model.Comment;
+import com.hackathon.backend.model.post.Comment;
 import com.hackathon.backend.repository.CommentRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
