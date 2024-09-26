@@ -1,0 +1,81 @@
+
+.container {
+    background-color: white;
+    width:80%;
+    margin: 0 150px 0 150px; 
+  }
+
+  body.dark-mode .content{
+    background-color: #121212;
+    color: white;
+  }
+  
+  .content {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+  }
+  
+  h1 {
+    font-size: 72px;
+    font-weight: bolder;
+    font-family: 'Roboto';
+    color: #BC1D30;
+    padding-top: 100px; 
+    padding-bottom: 50px;   
+  }
+  
+  .definition{
+    font-size: 30px;
+    font-family: 'Roboto';
+    margin-bottom: 52px;
+    
+  }
+  
+  .connectBtn {
+    color:white;
+    background: linear-gradient(45deg, #0F125D, #3263CC);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: 'Outfit';
+  }
+  
+  .bclogo {
+    width: 300px;
+    z-index: 1;
+    height: auto;
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    margin: auto;
+  }
+
+
+  @keyframes floating {
+    0% {
+      transform: translate(0, 0px);
+    }
+    50% {
+      transform: translate(0, 10px);
+    }
+    100% {
+      transform: translate(0, -0px);
+    }
+  }
+  
+  
+  @media screen and (max-width: 830px) {
+    .container {
+      flex-direction: column-reverse;
+    }
+  
+    .content {
+      align-items: center;
+    }
+  }
+  

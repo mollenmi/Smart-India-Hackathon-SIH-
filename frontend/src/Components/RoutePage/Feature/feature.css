@@ -1,0 +1,59 @@
+.carousel{
+    width:80%;
+    margin:0 150px 0 150px;
+  }
+  
+  .carousel h1{
+      font-size: 48px;
+      font-weight: bold;
+      font-family: 'Outfit';
+      color: #BC1D30;
+      text-align: center;
+  }
+
+  .carousel-content p{
+    font-family: 'Roboto';
+    text-align: left;
+    font-size: 18px;
+    padding-top: 10px;
+  
+    
+}
+.carousel-content{
+    padding: 10px 15px;
+}
+.carousel-content .heading{
+    font-size: 25px;
+    font-family: 'Outfit';
+    font-weight: 400;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.carousel-card{
+    background:linear-gradient(#8AA9EB,#D8EDFF);
+    width:328px;
+    color:black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-img{
+    width:328px;
+    height:200px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.cardBtn{
+    color:white;
+    background: linear-gradient(45deg, #0F125D, #3263CC);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    margin-left: 60px;
+    margin-top: 10px;
+}

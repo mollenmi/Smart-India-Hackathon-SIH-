@@ -1,0 +1,64 @@
+.footer{
+    background: linear-gradient(#739EFA,#3263CC,#203970,#01050F);
+    color:white;
+
+}
+
+.footer-content{
+    padding:40px 30px;
+}
+
+.flex{
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+    color:white;
+}    
+
+.header {
+    font-size: 25px;
+    font-weight: 500;
+    font-family: 'Outfit';
+    margin-bottom: 30px;
+    
+}
+
+.description{
+    font-family: 'Roboto';
+    font-size: 20px;
+    text-align: left;
+}
+a{
+    text-decoration: none;
+    font-family: 'Roboto';
+    font-size: 25px;
+    margin-bottom: 40px;
+}
+
+.quote{
+    font-family: 'Roboto';
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+p{
+    font-family:'Roboto' ;
+    font-size: 25px;
+}
+
+.socials a{
+    color:white;
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+
+.copyright{
+    font-family:'Roboto' ;
+    font-size: 25px;
+    text-align: center;
+}
+
+
+
+

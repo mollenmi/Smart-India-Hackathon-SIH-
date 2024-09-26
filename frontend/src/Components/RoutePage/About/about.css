@@ -1,0 +1,45 @@
+.about{
+  width:80%;
+  margin:0 150px 0 150px;
+}
+
+.about h1{
+    font-size: 48px;
+    font-weight: bold;
+    font-family: 'Outfit';
+    color: #BC1D30;
+    text-align: center;
+}
+
+.about p{
+    font-family: 'Roboto';
+    text-align: center;
+  
+    
+}
+ .card-box{
+    display: flex;
+    justify-content:space-around;
+    margin: 20px;
+  }
+  
+   .card-content {
+    text-align: left;
+    height: 500px;
+    padding: 10px 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background: linear-gradient(0deg, #3263CC,#88ABE7, #D8EDFF);
+    color:black;
+    font-family: 'Outfit';
+    font-size: 35px;
+    overflow: hidden;
+  }
+  
+  .card .heading {
+    font-family: 'Roboto';
+    font-size: 40px;
+    font-weight: 200;
+  }
+  
