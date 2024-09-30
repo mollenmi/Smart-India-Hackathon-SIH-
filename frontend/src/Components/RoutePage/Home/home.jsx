@@ -7,7 +7,7 @@ import '../Navbar/navbar.jsx';
 export const Home = () => {
   return (
    
-    <section className="container">
+    <section className="home">
       <div className="content">
       <div className="col-md-6">
         <h1 >From Alumni Support <br/> to Student Success </h1>  

@@ -1,8 +1,14 @@
 
-.container {
+.home {
     background-color: white;
-    width:80%;
-    margin: 0 150px 0 150px; 
+    margin: 0 100px 0 100px; 
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 0 100px;
   }
 
   body.dark-mode .content{
@@ -10,11 +16,7 @@
     color: white;
   }
   
-  .content {
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-  }
+  
   
   h1 {
     font-size: 72px;
@@ -70,12 +72,14 @@
   
   
   @media screen and (max-width: 830px) {
-    .container {
+    .home {
       flex-direction: column-reverse;
+      margin:0 10px 0 10px;
     }
   
     .content {
       align-items: center;
+      flex-direction: column-reverse;
     }
   }
   

@@ -21,9 +21,11 @@ export const Navbar = () => {
       <div className="menu"> 
         <div className="menuBtn" onClick={() => setMenuOpen(!menuOpen)}>
         {menuOpen ? (
-          <RxCross2 size={30} color="black" />
+          <RxCross2 size={35} color={darkMode ? "white" : "black"}
+          />
         ) : (
-          <RxHamburgerMenu  size={30} color="black" />
+          <RxHamburgerMenu  size={35} color={darkMode ? "white" : "black"}
+          />
         )}
       </div>
         <ul

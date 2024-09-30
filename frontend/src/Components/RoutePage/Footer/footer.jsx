@@ -12,44 +12,50 @@ export const Footer=()=>{
         <footer className='footer'>
             <div className='footer-content'>
             <div className='flex'>
-            <div>
-                <p className='header'>About Beyond Classroom</p>
-                <p className="quote">Empowering Students,<br/>Connecting Alumni</p>
-                <p className='description'>Beyond Classroom is a platform <br/>
-designed to bridge the gap between <br/>
-students and alumni, offering <br/>
-mentorship, career guidance, and<br/>
-community engagement.</p>
+            <div className='col'>
+                <div className='header'><p>About Beyond Classroom</p> </div>
+                <div><ul>
+                    <li className="quote">Empowering Students,<br/>Connecting Alumni</li>
+                    <li className='description'>Beyond Classroom is a platform <br/>
+                designed to bridge the gap between <br/>
+                students and alumni, offering <br/>
+                mentorship, career guidance, and<br/>
+                community engagement.</li></ul>
+                </div>
             </div>
-
-            <div>
-                <p className='header'>Quick Links</p>
-                    <a>Home</a><br/><br/>
-                    <a>About Us</a><br/><br/>
-                    <a>Our Features</a><br/><br/>
-                    <a>Meet Our Alumni</a><br/><br/>
-                    
-               
-            </div>
-            <div>
-                <p className='header'>Resources</p>
-                    <a>Blog</a><br/><br/>
-                    <a>FAQs</a><br/><br/>
-                    <a>Privacy Policy</a><br/><br/>
-                    <a>Terms & Conditions</a><br/>
-               
-            </div>
-            <div className='socials'>
-                <p className='header'>Socials</p>
-                <a href='/'><MdEmail/></a><br/>
-                <a href='www.instagram.com'><FaInstagram/></a><br/>
-                <a href='/'><FaFacebook/></a><br/>
-                <a href='/'><FaLinkedin/></a><br/>
-                <a href='/'><FaYoutube/></a><br/>
-            </div>
-            </div>
-            
            
+            
+          
+                
+            <div className='col'>
+            <div  className='header'><p>Quick Links</p></div>
+            <div><ul><li>Home</li>
+                    <li>About Us</li>
+                    <li>Our Features</li>
+                    <li>Meet Our Alumni</li></ul></div>
+                    </div>
+
+            <div className='col'>
+            <div  className='header'><p>Resources</p></div>
+            <div><ul><li>Blog</li>
+                    <li>FAQs</li>
+                    <li>Privacy Policy</li>
+                    <li>Terms & Conditions</li></ul></div>
+                    </div>
+            
+            <div className="col">
+            <div className='header'><p >Socials</p></div>
+                <div><ul><li><a href='/'><MdEmail/></a></li><br/>
+                <li><a href='www.instagram.com'><FaInstagram/></a></li><br/>
+                <li><a href='/'><FaFacebook/></a></li><br/>
+                <li><a href='/'><FaLinkedin/></a></li><br/>
+                <li><a href='/'><FaYoutube/></a></li><br/></ul></div>
+            </div>
+            </div>
+            </div>
+           
+            
+            <div>
             <p className="copyright">© 2024 Beyond Classroom. All rights reserved.</p>
             </div>
         </footer>

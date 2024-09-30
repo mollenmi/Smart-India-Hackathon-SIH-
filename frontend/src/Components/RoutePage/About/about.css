@@ -1,6 +1,5 @@
 .about{
-  width:80%;
-  margin:0 150px 0 150px;
+  margin:0 100px 0 100px;
 }
 
 .about h1{
@@ -43,3 +42,12 @@
     font-weight: 200;
   }
   
+  @media screen and (max-width: 830px) {
+    .about{
+      margin:0 10px 0 10px;
+    }
+    .card-box {
+      align-items: center;
+      flex-direction: column;
+    }
+  }
