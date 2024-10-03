@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(../assets/signup-bg.png);
+    background-size: cover;
+
+  }
+  
+  .wrapper {
+    position: relative;
+    width: 420px;
+    height: 450px;
+    background:transparent;
+    border:2px solid rgba(255, 255, 255, .1);
+    backdrop-filter: blur(30px);
+    border-radius: 10px;
+    color: #fff;
+    display: flex;
+    overflow: hidden;
+    transition: height .2s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Added shadow */
+  }
+  
+  .wrapper.active {
+    height: 550px;
+  }
+  
+  .wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+  }
+  
+  .wrapper .form-box.signup {
+    position: absolute;
+    transform: translateX(400px); 
+    transition: none;
+  }
+  
+  .wrapper .form-box.login {
+    transform: translateX(0); 
+    transition: transform .18s ease;
+  }
+  
+  .wrapper.active .form-box.login {
+    transition: none;
+    transform: translateX(-400px); 
+  }
+
+  .wrapper.active .form-box.signup {
+    transition: transform .18s ease;
+    transform: translateX(0); 
+  }
+  
+  form .form-heading {
+    font-size: 36px;
+    text-align: center;
+    color:white;
+    margin-bottom: 40px; 
+    font-family:'Outfit';
+    font-weight: 500;
+  }
+  
+  form .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 20px; /* Spacing between input fields */
+    /* background: #666769; */
+    border-radius: 30px; /* Rounded corners for input boxes */
+    padding-left: 15px; /* Padding for text inside input fields */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    
+  }
+  
+  .input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .1);
+    font-size: 16px;
+    color: white;
+    padding-left: 10px; /* Additional padding for the input text */
+    border-radius: 30px; /* Same border-radius as parent for rounded effect */
+  }
+  
+  .input-box input::placeholder {
+    color: #fff;
+  }
+  
+  .input-box .icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translate(0, -50%);
+    font-size: 20px; /* Slightly larger icon size */
+    color: white; /* Changed icon color to white */
+  }
+  
+  .input-box input:focus {
+    border-color: #fff; /* Highlight the input border on focus */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* Glowing effect on focus */
+  }
+  
+  form .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+  }
+  
+  .remember-forgot {
+    accent-color: #fff;
+    margin-right: 2px;
+  }
+  
+  .remember-forgot a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .remember-forgot a:hover {
+    text-decoration: none;
+  }
+  
+  form button {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 700;
+    transition: background 0.3s ease, color 0.3s ease; /* Smooth transition */
+  }
+  
+  form button:hover {
+    background: #3263CC;
+    color: white; /* Button text changes on hover */
+  }
+  
+  form .signup-link {
+    font-size: 10px;
+    text-align: center;
+    margin: 10px 0 10px 0;
+  }
+  
+  .signup-link .account {
+    color: #fff;
+    font-weight: 300;
+    font-size: 20px;
+  }
+
+  form .signup-link a {
+    color: #3263CC;
+    text-decoration: none;
+    font-size: 20px;
+  }  
+  .signup-link a:hover {
+    text-decoration: underline;
+  }
+  
