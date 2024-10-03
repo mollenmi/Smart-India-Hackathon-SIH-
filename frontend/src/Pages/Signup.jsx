@@ -14,7 +14,7 @@ import { useNavigate ,Link} from "react-router-dom";
   };
 
 return(
-     
+     <div className="page">
       <div className='wrapper'>
       <div className='form-box signup'>
         <form >
@@ -48,6 +48,7 @@ return(
         </form>
       </div>
     </div>
+     </div>
    );
 };
       
