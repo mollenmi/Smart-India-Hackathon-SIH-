@@ -6,30 +6,24 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import './Signup.css';
 import { useNavigate ,Link} from "react-router-dom";
 
- export default function Signup(){
+export default function Login(){
 
   const navigate=useNavigate();
-  const loginLink=()=>{
-    navigate("/login");
+  const signupLink=()=>{
+    navigate("/signup");
   };
-
-return(
+  return(
+    <div className='wrapper'>
      
-      <div className='wrapper'>
-      <div className='form-box signup'>
+
+    {/* Login page */}
+
+      <div className='form-box login'>
         <form >
-          <p className="form-heading">Sign Up</p>
+          <p className="form-heading">Sign In</p>
           <div className="input-box">
             <input type='text' placeholder="Username" required/>
             <FaUserGraduate className="icon"/>
-          </div>
-          <div className="input-box">
-            <input type='email' placeholder="Email" required/>
-            <MdEmail className="icon"/>
-          </div>
-          <div className="input-box">
-            <input type='text' placeholder="Admission Number" required/>
-            <MdNumbers className="icon"/>
           </div>
           <div className="input-box">
             <input type='password' placeholder="Password" required/>
@@ -37,18 +31,20 @@ return(
           </div>
 
           <div className="remember-forgot">
-            <label><input type='checkbox' />I agree to the terms & conditions.</label>
-            
+            <label><input type='checkbox' />Remember me</label>
+            <a href="#" >Forgot password?</a>
           </div>
-          <button type='submit'>Sign Up</button>
-
+          <button type='submit' >Sign In</button>
+          <br/><br/>
           <div className='signup-link'>
-            <p className="account">Already have an account? <Link onClick={loginLink}>Login</Link></p>
+            <p className="account">Don't have an account? <Link onClick={signupLink}>Signup</Link></p>
           </div>
         </form>
       </div>
-    </div>
-   );
-};
+    
       
+      
+    </div>
+  );
+};
 

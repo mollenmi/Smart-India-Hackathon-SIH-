@@ -18,7 +18,7 @@
   .wrapper {
     position: relative;
     width: 420px;
-    height: 450px;
+    height: max-content;
     background:transparent;
     border:2px solid rgba(255, 255, 255, .1);
     backdrop-filter: blur(30px);
@@ -30,36 +30,11 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Added shadow */
   }
   
-  .wrapper.active {
-    height: 550px;
-  }
-  
   .wrapper .form-box {
     width: 100%;
     padding: 40px;
   }
-  
-  .wrapper .form-box.signup {
-    position: absolute;
-    transform: translateX(400px); 
-    transition: none;
-  }
-  
-  .wrapper .form-box.login {
-    transform: translateX(0); 
-    transition: transform .18s ease;
-  }
-  
-  .wrapper.active .form-box.login {
-    transition: none;
-    transform: translateX(-400px); 
-  }
 
-  .wrapper.active .form-box.signup {
-    transition: transform .18s ease;
-    transform: translateX(0); 
-  }
-  
   form .form-heading {
     font-size: 36px;
     text-align: center;
@@ -73,11 +48,9 @@
     position: relative;
     width: 100%;
     height: 50px;
-    margin-bottom: 20px; /* Spacing between input fields */
-    /* background: #666769; */
-    border-radius: 30px; /* Rounded corners for input boxes */
-    padding-left: 15px; /* Padding for text inside input fields */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-bottom: 20px; 
+    border-radius: 30px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     
   }
   
@@ -89,8 +62,8 @@
     border: 2px solid rgba(255, 255, 255, .1);
     font-size: 16px;
     color: white;
-    padding-left: 10px; /* Additional padding for the input text */
-    border-radius: 30px; /* Same border-radius as parent for rounded effect */
+    padding-left: 10px; 
+    border-radius: 30px; 
   }
   
   .input-box input::placeholder {
@@ -102,13 +75,13 @@
     right: 20px;
     top: 50%;
     transform: translate(0, -50%);
-    font-size: 20px; /* Slightly larger icon size */
-    color: white; /* Changed icon color to white */
+    font-size: 20px; 
+    color: white;
   }
   
   .input-box input:focus {
-    border-color: #fff; /* Highlight the input border on focus */
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* Glowing effect on focus */
+    border-color: #fff; 
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); 
   }
   
   form .remember-forgot {
@@ -144,13 +117,12 @@
     font-size: 16px;
     color: #333;
     font-weight: 700;
-    transition: background 0.3s ease, color 0.3s ease; /* Smooth transition */
+    transition: background 0.3s ease, color 0.3s ease;
   }
   
   form button:hover {
     background: #3263CC;
-    color: white; /* Button text changes on hover */
-  }
+    color: white; }
   
   form .signup-link {
     font-size: 10px;
