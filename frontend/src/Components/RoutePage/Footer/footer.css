@@ -48,6 +48,13 @@ p{
     font-size: 25px;
     list-style: none;
 }
+.col li:hover{
+    font-family:'Roboto' ;
+    font-size: 25px;
+    list-style: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 .copyright{
     font-family:'Roboto' ;

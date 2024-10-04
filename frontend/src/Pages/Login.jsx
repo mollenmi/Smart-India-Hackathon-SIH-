@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FaUserGraduate } from "react-icons/fa";
-import { MdNumbers, MdEmail} from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 
 import './Signup.css';
@@ -13,7 +12,7 @@ export default function Login(){
     navigate("/signup");
   };
   return(
-    <div class='page'>
+    <div className='page'>
       <div className='wrapper'>
      
 

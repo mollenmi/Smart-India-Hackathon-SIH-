@@ -8,13 +8,14 @@ body {
 
 .navBar {
     padding:15px;
-    position: relative;
+    position: static;
     display: flex;
     align-items:center;
     justify-content: space-between;
     z-index: 2;
     margin: 0 100px 0 100px;
     background-color: white;
+
   }
   
 
@@ -74,6 +75,23 @@ body {
     text-decoration: none;
     font-family: 'Outfit' , sans-serif;
   }
+
+  .menuItems a:hover {
+    font-size: 25px;
+    color:#BC1D30;
+    text-decoration: none;
+    font-family: 'Outfit' , sans-serif;
+    cursor: pointer;
+  }
+  
+  body.dark-mode .menuItems a:hover {
+    font-size: 25px;
+    color:#BC1D30;
+    text-decoration: none;
+    font-family: 'Outfit' , sans-serif;
+    cursor: pointer;
+  }
+  
   .loginBtn{
     color:white;
     background: linear-gradient(45deg, #0F125D, #3263CC);

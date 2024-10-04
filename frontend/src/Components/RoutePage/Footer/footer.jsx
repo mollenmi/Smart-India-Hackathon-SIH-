@@ -5,9 +5,23 @@ import { FaFacebook } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
-
+import { useNavigate,Link } from "react-router-dom";
 
 export const Footer=()=>{
+
+  const navigate=useNavigate();
+  const homeLink=()=>{
+        navigate("./home");
+   }
+  const aboutLink=()=>{
+      navigate("./about");
+ }
+  const featLink=()=>{
+      navigate("./features");
+ }
+  const alumniLink=()=>{
+      navigate("./alumni");
+ }
     return(
         <footer className='footer'>
             <div className='footer-content'>
@@ -29,10 +43,10 @@ export const Footer=()=>{
                 
             <div className='col'>
             <div  className='header'><p>Quick Links</p></div>
-            <div><ul><li>Home</li>
-                    <li>About Us</li>
-                    <li>Our Features</li>
-                    <li>Meet Our Alumni</li></ul></div>
+            <div><ul><li onClick={homeLink}>Home</li>
+                    <li onClick={aboutLink}>About Us</li>
+                    <li onClick={featLink}>Our Features</li>
+                    <li onClick={alumniLink}>Meet Our Alumni</li></ul></div>
                     </div>
 
             <div className='col'>

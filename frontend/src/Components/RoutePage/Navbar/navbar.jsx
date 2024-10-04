@@ -4,6 +4,7 @@ import logo from '../../../assets/gu_logo.png';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { useNavigate ,Link} from "react-router-dom";
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,6 +14,20 @@ export const Navbar = () => {
     setDarkMode(!darkMode);
     document.body.classList.toggle('dark-mode', !darkMode);
   };
+
+  const navigate=useNavigate();
+  const aboutLink=()=>{
+      navigate("./about");
+ }
+  const featLink=()=>{
+      navigate("./features");
+ }
+  const alumniLink=()=>{
+      navigate("./alumni");
+ }
+  const loginLink=()=>{
+      navigate("./login");
+ }
 
   return (
    
@@ -33,13 +48,13 @@ export const Navbar = () => {
           onClick={() => setMenuOpen(false)}
         >
           <li>
-            <a href="#about">About</a>
+            <a onClick={aboutLink}>About</a>
           </li>
           <li>
-            <a href="#features">Features</a>
+            <a onClick={featLink}>Features</a>
           </li>
           <li>
-            <a href="#alumni">Alumni</a>
+            <a onClick={alumniLink}>Alumni</a>
           </li>
           <div className={darkMode? 'dark':'light'}>
           <i onClick={toggleMode} >
@@ -47,7 +62,7 @@ export const Navbar = () => {
           </i>
           </div>
           
-            <button className="loginBtn">Login</button>
+            <button className="loginBtn" onClick={loginLink}>Login</button>
         </ul>
       </div>
     </nav>

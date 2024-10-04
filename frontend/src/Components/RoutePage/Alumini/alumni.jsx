@@ -7,9 +7,13 @@ import alumni2 from '../../../assets/alumni2.jpg';
 import alumni3 from '../../../assets/alumni3.jpg';
 import alumni4 from '../../../assets/alumni4.png';
 import alumni5 from '../../../assets/alumni5.jpg';
-
+import { useNavigate,Link } from 'react-router-dom';
 
 export const Alumni=()=>{
+  const navigate=useNavigate();
+  const signupLink=()=>{
+      navigate("./signup");
+ }
     const responsive = {
         superLargeDesktop: {
           breakpoint: { max: 4000, min: 3000 },
@@ -81,7 +85,7 @@ export const Alumni=()=>{
       <br/>
       <br/>
       <div className='Btn-div'>
-          <button className='Btn' >Let's Connect</button>
+          <button className='Btn' onClick={signupLink}>Let's Connect</button>
          </div>
          <br/>
          <br/>

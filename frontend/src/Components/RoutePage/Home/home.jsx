@@ -3,8 +3,15 @@ import  bc_logo_lm from '../../../assets/bc_logo_lm.png';
 import  bc_logo_dm from '../../../assets/bc_logo_dm.png'; 
 import "./home.css";
 import '../Navbar/navbar.jsx';
+import { useNavigate,Link } from "react-router-dom";
 
 export const Home = () => {
+
+  const navigate=useNavigate();
+  const signupLink=()=>{
+      navigate("./signup");
+ }
+
   return (
    
     <section className="home">
@@ -14,7 +21,7 @@ export const Home = () => {
         <p className='definition'>
         Get guidance , access placement support and connect <br/>with professionals from your college , communities and <br/> beyond . 
       </p>
-        <button className="connectBtn">Sign Up to Connect</button>
+        <button className="connectBtn" onClick={signupLink}>Sign Up to Connect</button>
       </div>
       <div className="bclogo">
         <img 
