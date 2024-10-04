@@ -5,7 +5,7 @@ import Card from '@mui/material/Card';
 
 export const About = ()  =>{
     return(
-        <div className="about" >
+        <div id='about' className="about" >
             <h1>WHY BEYOND CLASSROOM ?</h1>
             <p>Beyond Classroom is your bridge to college alumni, helping you navigate your <br/>
                academic and professional journey. From personalized mentorship to placement<br/>

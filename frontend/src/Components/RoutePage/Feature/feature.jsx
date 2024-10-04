@@ -30,7 +30,7 @@ export const Feature=()=>{
       };
     
     return(
-         <div className='carousel'>
+         <div id='features' className='carousel'>
             <h1>FEATURES</h1>
             <Carousel 
             responsive={responsive}>

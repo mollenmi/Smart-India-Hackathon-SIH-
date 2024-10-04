@@ -43,16 +43,26 @@ p{
     font-size: 25px;
 }
 
-.col li{
-    font-family:'Roboto' ;
-    font-size: 25px;
-    list-style: none;
+
+.col ul{
+    list-style-type: none;
 }
-.col li:hover{
+.col li a{
+    text-decoration: none;
     font-family:'Roboto' ;
     font-size: 25px;
     list-style: none;
-    text-decoration: underline;
+    color: rgba(255,255,255 ,0.5);
+    padding-bottom: 10px;
+}
+.col li{
+    margin-bottom: 10px;
+}
+.col a:hover{
+    font-family:'Roboto' ;
+    font-size: 28px;
+    list-style: none;
+    color: rgba(255,255,255 ,1);
     cursor: pointer;
 }
 
@@ -62,10 +72,7 @@ p{
     text-align: center;
     padding: 20px;
 }
-.col a{
-    font-size: 30px;
-    color: white;
-}
+
 @media screen and (max-width: 830px) {
     .flex{
       flex-direction: column;

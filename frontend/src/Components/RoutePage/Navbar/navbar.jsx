@@ -16,15 +16,6 @@ export const Navbar = () => {
   };
 
   const navigate=useNavigate();
-  const aboutLink=()=>{
-      navigate("./about");
- }
-  const featLink=()=>{
-      navigate("./features");
- }
-  const alumniLink=()=>{
-      navigate("./alumni");
- }
   const loginLink=()=>{
       navigate("./login");
  }
@@ -48,13 +39,13 @@ export const Navbar = () => {
           onClick={() => setMenuOpen(false)}
         >
           <li>
-            <a onClick={aboutLink}>About</a>
+            <a href="#about">About</a>
           </li>
           <li>
-            <a onClick={featLink}>Features</a>
+            <a href='#features'>Features</a>
           </li>
           <li>
-            <a onClick={alumniLink}>Alumni</a>
+            <a href='#alumni'>Alumni</a>
           </li>
           <div className={darkMode? 'dark':'light'}>
           <i onClick={toggleMode} >
