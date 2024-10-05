@@ -51,7 +51,7 @@ Govt. of Rajasthan
    - Alumni and students can upload and share photos, videos, and documents related to events or projects.
 
 ### 7. **Academic Notes Section** 
-    - Students can share notes with each other.
+   - Students can share notes with each other.
 
 ### 8. **Communities**
    - **Interest-Based Communities:** Students and alumni can create or join communities based on shared interests like technologies (AI, Data Science, Web Development), industries, or project collaboration.
