@@ -27,6 +27,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +50,7 @@ public class AuthController {
                                                 @RequestParam("username") String username,
                                                 @RequestParam("password") String password,
                                                 @RequestParam("email") String email,
-                                                @RequestParam("photo")MultipartFile photo) {
+                                                @RequestParam(value = "photo", required = false)MultipartFile photo) {
         try {
             Alumni alumni = new Alumni();
             alumni.setName(name);
@@ -81,14 +82,22 @@ public class AuthController {
                                                  @RequestParam("username") String username,
                                                  @RequestParam("password") String password,
                                                  @RequestParam("email") String email,
-                                                 @RequestParam("photo")MultipartFile photo) {
+                                                 @RequestParam(value = "photo", required = false) MultipartFile photo) {
+        System.out.println("Received registration: " + name + ", " + ", " + username + email + ", " + password + ", " + photo);
         try {
             Student student = new Student();
             student.setName(name);
             student.setUsername(username);
             student.setPassword(password);
             student.setEmail(email);
-            student.setPhoto(photo.getBytes());
+
+            // Check if the photo is provided and process it
+            if (photo != null && !photo.isEmpty()) {
+                student.setPhoto(photo.getBytes());
+            } else {
+                student.setPhoto(null);  // Or set a default/placeholder photo if needed
+            }
+
             userService.addStudent(student);
 
             Authentication authentication = this.authenticate(username, password);
@@ -98,14 +107,18 @@ public class AuthController {
             AuthResponse response = new AuthResponse(jwt, true);
 
             return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
-        }
-        catch (UserAlreadyExistsException e) {
+        } catch (UserAlreadyExistsException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error processing photo");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error processing photo file");
+        } catch (Exception e) {
+            // Log the exception for debugging purposes
+            e.printStackTrace();  // Or use a logger
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred: " + e.getMessage());
         }
     }
+
+
 
     @PostMapping("/register-admin")
     public ResponseEntity<?> adminRegistration(@RequestParam("name") String name,

@@ -192,10 +192,12 @@ public class UserService {
         }
         student.setPassword(passwordEncoder.encode(student.getPassword()));
         System.out.println(student.getPassword());
+
         Role userRole = roleRepo.findByName("ROLE_STUDENT").get();
+
         student.setRoles(Collections.singletonList(userRole));
         studentRepo.save(student);
-        roleService.assignRoleToAlumni(student.getStudentId(), userRole.getRoleId());
+        roleService.assignRoleToStudent(student.getStudentId(), userRole.getRoleId());
     }
 
     public void addAdmin(Admin admin) {
