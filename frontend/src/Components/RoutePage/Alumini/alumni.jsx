@@ -34,7 +34,7 @@ export const Alumni=()=>{
       };
       
     return(
-         <div className='carousel'>
+         <div id='alumni' className='carousel'>
             <h1>MEET OUR ALUMNI</h1>
             <Carousel 
             responsive={responsive}>
@@ -92,4 +92,4 @@ export const Alumni=()=>{
          </div>
         
     )
-}
+  }

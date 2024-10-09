@@ -14,7 +14,7 @@ export const Home = () => {
 
   return (
    
-    <section className="home">
+    <section id='home' className="home">
       <div className="content">
       <div className="col-md-6">
         <h1 >From Alumni Support <br/> to Student Success </h1>  

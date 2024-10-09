@@ -8,14 +8,14 @@ body {
 
 .navBar {
     padding:15px;
-    position: static;
+    position: sticky;
     display: flex;
     align-items:center;
     justify-content: space-between;
-    z-index: 2;
+    z-index: 10;
     margin: 0 100px 0 100px;
     background-color: white;
-
+    top:0;
   }
   
 

@@ -5,23 +5,9 @@ import { FaFacebook } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
-import { useNavigate,Link } from "react-router-dom";
 
 export const Footer=()=>{
 
-  const navigate=useNavigate();
-  const homeLink=()=>{
-        navigate("./home");
-   }
-  const aboutLink=()=>{
-      navigate("./about");
- }
-  const featLink=()=>{
-      navigate("./features");
- }
-  const alumniLink=()=>{
-      navigate("./alumni");
- }
     return(
         <footer className='footer'>
             <div className='footer-content'>
@@ -43,27 +29,27 @@ export const Footer=()=>{
                 
             <div className='col'>
             <div  className='header'><p>Quick Links</p></div>
-            <div><ul><li onClick={homeLink}>Home</li>
-                    <li onClick={aboutLink}>About Us</li>
-                    <li onClick={featLink}>Our Features</li>
-                    <li onClick={alumniLink}>Meet Our Alumni</li></ul></div>
+            <div><ul><li><a href='#home'>Home</a></li>
+                     <li><a href='#about'>About Us</a></li>
+                     <li><a href='#features'>Our Features</a></li>
+                     <li><a href='#alumni'>Meet Our Alumni</a></li></ul></div>
                     </div>
 
             <div className='col'>
             <div  className='header'><p>Resources</p></div>
-            <div><ul><li>Blog</li>
-                    <li>FAQs</li>
-                    <li>Privacy Policy</li>
-                    <li>Terms & Conditions</li></ul></div>
+            <div><ul> <li><a href='#blog'>Blog</a></li>
+                      <li><a href='#faqs'>FAQs</a></li>
+                      <li><a href='#pp'>Privacy Policy</a></li>
+                      <li><a href='#t&c'>Terms & Conditions</a></li></ul></div>
                     </div>
             
             <div className="col">
             <div className='header'><p >Socials</p></div>
-                <div><ul><li><a href='/'><MdEmail/></a></li><br/>
-                <li><a href='www.instagram.com'><FaInstagram/></a></li><br/>
-                <li><a href='/'><FaFacebook/></a></li><br/>
-                <li><a href='/'><FaLinkedin/></a></li><br/>
-                <li><a href='/'><FaYoutube/></a></li><br/></ul></div>
+                <div><ul><li><a href='/'><MdEmail/></a></li>
+                         <li><a href='www.instagram.com'><FaInstagram/></a></li>
+                         <li><a href='/'><FaFacebook/></a></li>
+                         <li><a href='/'><FaLinkedin/></a></li>
+                         <li><a href='/'><FaYoutube/></a></li></ul></div>
             </div>
             </div>
             </div>
