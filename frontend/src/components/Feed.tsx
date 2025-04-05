@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Post from './Post';
+import CreatePost from './CreatePost';
 import { PostType } from '../types';
 
 const Feed: React.FC = () => {
@@ -18,6 +19,7 @@ const Feed: React.FC = () => {
       likes: Math.floor(Math.random() * 1000),
       comments: Math.floor(Math.random() * 50),
       timestamp: new Date(Date.now() - (startIndex + i) * 3600000).toISOString(),
+      commentList: [],
     }));
   };
 
@@ -38,8 +40,17 @@ const Feed: React.FC = () => {
     }, 1500);
   };
 
+  const handleAddPost = (newPost: PostType) => {
+    setPosts([newPost, ...posts]);
+  };
+
   return (
     <div className="max-w-2xl mx-auto py-6 px-4 sm:px-6">
+      {/* Create Post Component */}
+      <div className="mb-6">
+        <CreatePost onPostCreate={handleAddPost} />
+      </div>
+      
       <InfiniteScroll
         dataLength={posts.length}
         next={fetchMoreData}
